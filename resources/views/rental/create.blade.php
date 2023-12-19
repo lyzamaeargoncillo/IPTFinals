@@ -9,7 +9,7 @@
 
             <div class="mb-3">
                 <label for="customer_id" class="form-label">Select Customer:</label>
-                <select name="customer_id" id="customer_id" class="form-control">
+                <select name="customer_id" id="customer_id" class="form-select">
                     @foreach ($customers as $customer)
                         <option value="{{ $customer->id }}">{{ $customer->name }}</option>
                     @endforeach
@@ -31,7 +31,7 @@
                 <input type="text" class="form-control" id="rental_fee" name="rental_fee" value="{{ old('rental_fee') }}">
             </div>
 
-            <button type="submit" class="btn btn-primary">Create Rental</button>
+            <button type="submit" class="btn btn-primary btn-box-hover">Create Rental</button>
         </form>
     </div>
 @endsection

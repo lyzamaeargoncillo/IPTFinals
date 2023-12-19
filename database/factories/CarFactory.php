@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Rental;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,10 +18,11 @@ class CarFactory extends Factory
     public function definition(): array
     {
         return [
-        'brand' => $this->faker->word,
-        'model' => $this->faker->word,
-        'year' => $this->faker->year,
-        'rental_fee' => $this->faker->randomFloat(2,50,500),
+            'rental_id' => fake()->randomElement(Rental::pluck('id')),
+            'brand' => $this->faker->word,
+            'model' => $this->faker->word,
+            'year' => $this->faker->year,
+            'rental_fee' => $this->faker->randomFloat(2,50,500),
         ];
     }
 }

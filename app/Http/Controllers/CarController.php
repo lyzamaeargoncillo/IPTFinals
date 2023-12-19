@@ -13,11 +13,13 @@ class CarController extends Controller
         $cars = Car::all();
         return view('car.index', compact('cars'));
     }
-    
+
 
     public function create()
     {
-        return view('car.create');
+        $rentals = Rental::all();
+
+        return view('car.create', compact('rentals'));
     }
 
     public function store(Request $request)
@@ -27,6 +29,7 @@ class CarController extends Controller
             'model' => 'required|string',
             'year' => 'required|integer',
             'rental_fee' => 'required|numeric',
+            'rental_id' => 'required|exists:rentals,id'
         ]);
 
         $car = new Car([
@@ -34,14 +37,16 @@ class CarController extends Controller
             'model' => $validatedData['model'],
             'year' => $validatedData['year'],
             'rental_fee' => $validatedData['rental_fee'],
+            'rental_id' => $validatedData['rental_id'],
         ]);
-                
+
+
         if ($car->save()) {
             return redirect()->route('car.index')->with('success', 'Car added successfully!');
         } else {
             return redirect()->route('car.create')->withInput()->withErrors(['Failed to save the car.']);
         }
-    }        
+    }
 
     public function show(Car $car)
     {
@@ -67,7 +72,7 @@ class CarController extends Controller
             'year' => $request->input('year'),
             'rental_fee' => $request->input('rental_fee'),
         ]);
-        
+
 
         return redirect()->route('car.index')->with('success', 'Car updated successfully.');
     }

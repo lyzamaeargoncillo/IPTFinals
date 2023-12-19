@@ -49,7 +49,7 @@ class RentalController extends Controller
     {
         $rental = Rental::findOrFail($id);
         $customers = Customer::all();
-    
+
         return view('rental.edit', compact('rental', 'customers'));
     }
     public function update(Request $request, $id)
@@ -77,5 +77,5 @@ class RentalController extends Controller
             return redirect()->route('rental.index')->with('error', 'Failed to delete rental. Error: ' . $e->getMessage());
         }
     }
-    
+
 }

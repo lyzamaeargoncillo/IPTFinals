@@ -4,6 +4,10 @@
     <div class="container">
         <h2>Rentals</h2>
 
+
+        <a href="{{ route('rental.create') }}" class="btn btn-primary btn-box-hover">Add New Rental</a>
+
+
         @if(session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
@@ -15,8 +19,6 @@
                 {{ session('error') }}
             </div>
         @endif
-
-        <a href="{{ route('rental.create') }}" class="btn btn-primary">Add New Rental</a>
 
         @if ($rentals && count($rentals) > 0)
         <table class="table mt-3">
@@ -50,12 +52,11 @@
                             <td>{{ $rental->return_date }}</td>
                             <td>{{ $rental->rental_fee }}</td>
                             <td>
-                                {{-- <a href="{{ route('rental.show', $rental->id) }}" class="btn btn-info">View</a> --}}
-                                <a href="{{ route('rental.edit', $rental->id) }}" class="btn btn-warning">Edit</a>
+                                <a href="{{ route('rental.edit', $rental->id) }}" class="btn btn-warning btn-box-hover-edit">Edit</a>
                                 <form action="{{ route('rental.destroy', $rental->id) }}" method="POST" style="display: inline;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                                    <button type="submit" class="btn btn-danger btn-box-hover-del" onclick="return confirm('Are you sure?')">Delete</button>
                                 </form>
                             </td>
                         </tr>

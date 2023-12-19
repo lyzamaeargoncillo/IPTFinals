@@ -36,6 +36,17 @@
                 <label for="rental_fee">Rent Fee:</label>
                 <input type="number" class="form-control" id="rental_fee" name="rental_fee" required>
             </div>
+
+            <div class="mb-3">
+                <label for="rental_id" class="form-label">Select Rental ID:</label>
+                <select name="rental_id" id="rental_id" class="form-control">
+                    @foreach ($rentals as $rental)
+                        <option value="{{ $rental->id }}">{{ $rental->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+
             <br> <br>
             <button type="submit" class="btn btn-primary">Add Car</button>
         </form>

@@ -24,8 +24,8 @@ class Customer extends Model
     /**
      * Get the cars owned by the customer.
      */
-    public function cars()
+    public function rentals()
     {
-        return $this->hasMany(Car::class);
+        return $this->hasMany(Rentals::class);
     }
 }

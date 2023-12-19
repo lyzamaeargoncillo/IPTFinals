@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Customer;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,7 @@ class RentalFactory extends Factory
     public function definition(): array
     {
         return [
-            'customer_id' => rand(1, 50),
+            'customer_id' => fake()->randomElement(Customer::pluck('id')),
             'rental_date' => $this->faker->dateTimeThisYear,
             'return_date' => $this->faker->dateTimeThisYear,
             'rental_fee' => $this->faker->randomFloat(2,50,500),
